@@ -1,0 +1,30 @@
+<% @page_title = "会員名簿" %>
+<h1><%= @page_title %></h1>
+
+<%= form_tag :search_profiles, method: :get, class: "search" do %>
+    <%= text_field_tag "q", params[:q] %>
+    <%= submit_tag "検索" %>
+<% end %>
+
+<% if true #current_member %>
+    <% if @profiles.present? %>   <%# 会員情報がある場合 %>
+        <table class = "list">
+            <thead>
+                <tr>
+                    <th>氏名</th>
+                    <th>所属</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @profiles.each do |profile| %>
+                    <tr>
+                       <td><%= link_to profile.fullname, profile %></td>  <%# 氏名 %>
+                        <td><%= profile.affiliation %></td>             <%# 所属 %>
+                    </tr>
+                <% end %>
+           </tbody>
+        </table>
+    <% else %>  <%# 会員情報がない場合 %>
+        <p>会員情報がありません．</p>
+    <% end %>
+<% end %>

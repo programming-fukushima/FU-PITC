@@ -1,0 +1,22 @@
+<% page_title = "会員詳細" %>
+
+<h1><%= @page_title %></h1>
+
+<% if current_member %>
+    <div class= "toolbar"><%= link_to "編集", [:edit, @profile] %></div>
+<% end %>
+
+<table class="attr">
+    <tr>
+        <th>氏名</th>
+        <td><%= @profile.family + @profile.first %></td>
+    </tr>
+    <tr>
+        <th>所属</th>
+        <td><%= @profile.affiliation %></td>
+    </tr>
+    <tr>
+        <th>性別</th>
+        <td><%= @profile.sex == 1 ? "男" : "女" %></td>
+    </tr>
+</table>
